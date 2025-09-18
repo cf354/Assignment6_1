@@ -1,0 +1,13 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\ue5\\assignment6\\assignment6\\intermediate\\build\\win64\\unrealeditor\\inc\\assignment6\\uht\\assignment6.init.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\ue5\\assignment6\\assignment6\\intermediate\\build\\win64\\x64\\assignment6editor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\ue5\\assignment6\\assignment6\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\assignment6\\definitions.assignment6.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

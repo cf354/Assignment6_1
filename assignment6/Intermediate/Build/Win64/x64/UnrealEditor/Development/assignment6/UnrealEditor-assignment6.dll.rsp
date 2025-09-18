@@ -37,8 +37,15 @@
 /FUNCTIONPADMIN:6
 /NOIMPLIB
 "D:\Ue5\assignment6\assignment6\Intermediate\Build\Win64\x64\assignment6Editor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
+"D:\Ue5\assignment6\assignment6\Intermediate\Build\Win64\x64\UnrealEditor\Development\assignment6\assignment6.init.gen.cpp.obj"
+"D:\Ue5\assignment6\assignment6\Intermediate\Build\Win64\x64\UnrealEditor\Development\assignment6\Elevator.gen.cpp.obj"
+"D:\Ue5\assignment6\assignment6\Intermediate\Build\Win64\x64\UnrealEditor\Development\assignment6\Item.gen.cpp.obj"
+"D:\Ue5\assignment6\assignment6\Intermediate\Build\Win64\x64\UnrealEditor\Development\assignment6\SpawnManager.gen.cpp.obj"
 "D:\Ue5\assignment6\assignment6\Intermediate\Build\Win64\x64\UnrealEditor\Development\assignment6\assignment6.cpp.obj"
 "D:\Ue5\assignment6\assignment6\Intermediate\Build\Win64\x64\UnrealEditor\Development\assignment6\PerModuleInline.gen.cpp.obj"
+"D:\Ue5\assignment6\assignment6\Intermediate\Build\Win64\x64\UnrealEditor\Development\assignment6\Elevator.cpp.obj"
+"D:\Ue5\assignment6\assignment6\Intermediate\Build\Win64\x64\UnrealEditor\Development\assignment6\Item.cpp.obj"
+"D:\Ue5\assignment6\assignment6\Intermediate\Build\Win64\x64\UnrealEditor\Development\assignment6\SpawnManager.cpp.obj"
 "D:\Ue5\assignment6\assignment6\Intermediate\Build\Win64\x64\UnrealEditor\Development\assignment6\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\CoreUObject\UnrealEditor-CoreUObject.lib"

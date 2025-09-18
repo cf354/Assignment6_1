@@ -1,5 +1,8 @@
 /I "."
+/I "D:\Ue5\assignment6\assignment6\Source\assignment6\Private"
+/I "D:\Ue5\assignment6\assignment6\Intermediate\Build\Win64\UnrealEditor\Inc\assignment6\UHT"
 /I "D:\Ue5\assignment6\assignment6\Source"
+/I "D:\Ue5\assignment6\assignment6\Source\assignment6\Public"
 /I "Runtime\Core\Public"
 /I "Runtime\Core\Internal"
 /I "Runtime\TraceLog\Public"
