@@ -12,6 +12,7 @@ class USceneComponent;
 class UCapsuleComponent;
 class UInputMappingContext;
 class UBoxComponent;
+class ASpartaCharacter;
 struct FInputActionValue;
 
 
@@ -24,7 +25,8 @@ public:
 	// Sets default values for this pawn's properties
 	AAirplane();
 
-
+	UPROPERTY();
+	ASpartaCharacter* PilotCharacter;
 
 protected:
 	// Called when the game starts or when spawned
@@ -50,7 +52,7 @@ protected:
 	UFUNCTION()
 	void TurnEnd(const FInputActionValue& value);
 	UFUNCTION()
-	void UpDown(const FInputActionValue& value);
+	void ExitAirplane(const FInputActionValue& value);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Airplane|Properties")
 	float MaxSpeed;
@@ -93,6 +95,7 @@ protected:
 	float CurrentYaw;
 	float YawInterpSpeed;
 
+	bool bIsFlying;
 
 
 public:

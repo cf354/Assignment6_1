@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeAirplane() {}
 // Begin Cross Module References
 ASSIGNMENT6_API UClass* Z_Construct_UClass_AAirplane();
 ASSIGNMENT6_API UClass* Z_Construct_UClass_AAirplane_NoRegister();
+ASSIGNMENT6_API UClass* Z_Construct_UClass_ASpartaCharacter_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_APawn();
 ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
@@ -21,6 +22,51 @@ ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 ENHANCEDINPUT_API UScriptStruct* Z_Construct_UScriptStruct_FInputActionValue();
 UPackage* Z_Construct_UPackage__Script_assignment6();
 // End Cross Module References
+
+// Begin Class AAirplane Function ExitAirplane
+struct Z_Construct_UFunction_AAirplane_ExitAirplane_Statics
+{
+	struct Airplane_eventExitAirplane_Parms
+	{
+		FInputActionValue value;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Airplane.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_value_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_value;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AAirplane_ExitAirplane_Statics::NewProp_value = { "value", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(Airplane_eventExitAirplane_Parms, value), Z_Construct_UScriptStruct_FInputActionValue, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_value_MetaData), NewProp_value_MetaData) }; // 494646648
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AAirplane_ExitAirplane_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AAirplane_ExitAirplane_Statics::NewProp_value,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AAirplane_ExitAirplane_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AAirplane_ExitAirplane_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AAirplane, nullptr, "ExitAirplane", nullptr, nullptr, Z_Construct_UFunction_AAirplane_ExitAirplane_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AAirplane_ExitAirplane_Statics::PropPointers), sizeof(Z_Construct_UFunction_AAirplane_ExitAirplane_Statics::Airplane_eventExitAirplane_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00480401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AAirplane_ExitAirplane_Statics::Function_MetaDataParams), Z_Construct_UFunction_AAirplane_ExitAirplane_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AAirplane_ExitAirplane_Statics::Airplane_eventExitAirplane_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AAirplane_ExitAirplane()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AAirplane_ExitAirplane_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AAirplane::execExitAirplane)
+{
+	P_GET_STRUCT_REF(FInputActionValue,Z_Param_Out_value);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ExitAirplane(Z_Param_Out_value);
+	P_NATIVE_END;
+}
+// End Class AAirplane Function ExitAirplane
 
 // Begin Class AAirplane Function GoForward
 struct Z_Construct_UFunction_AAirplane_GoForward_Statics
@@ -202,61 +248,16 @@ DEFINE_FUNCTION(AAirplane::execTurnStart)
 }
 // End Class AAirplane Function TurnStart
 
-// Begin Class AAirplane Function UpDown
-struct Z_Construct_UFunction_AAirplane_UpDown_Statics
-{
-	struct Airplane_eventUpDown_Parms
-	{
-		FInputActionValue value;
-	};
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/Airplane.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_value_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FStructPropertyParams NewProp_value;
-	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AAirplane_UpDown_Statics::NewProp_value = { "value", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(Airplane_eventUpDown_Parms, value), Z_Construct_UScriptStruct_FInputActionValue, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_value_MetaData), NewProp_value_MetaData) }; // 494646648
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AAirplane_UpDown_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AAirplane_UpDown_Statics::NewProp_value,
-};
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AAirplane_UpDown_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AAirplane_UpDown_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AAirplane, nullptr, "UpDown", nullptr, nullptr, Z_Construct_UFunction_AAirplane_UpDown_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AAirplane_UpDown_Statics::PropPointers), sizeof(Z_Construct_UFunction_AAirplane_UpDown_Statics::Airplane_eventUpDown_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00480401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AAirplane_UpDown_Statics::Function_MetaDataParams), Z_Construct_UFunction_AAirplane_UpDown_Statics::Function_MetaDataParams) };
-static_assert(sizeof(Z_Construct_UFunction_AAirplane_UpDown_Statics::Airplane_eventUpDown_Parms) < MAX_uint16);
-UFunction* Z_Construct_UFunction_AAirplane_UpDown()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AAirplane_UpDown_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(AAirplane::execUpDown)
-{
-	P_GET_STRUCT_REF(FInputActionValue,Z_Param_Out_value);
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->UpDown(Z_Param_Out_value);
-	P_NATIVE_END;
-}
-// End Class AAirplane Function UpDown
-
 // Begin Class AAirplane
 void AAirplane::StaticRegisterNativesAAirplane()
 {
 	UClass* Class = AAirplane::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "ExitAirplane", &AAirplane::execExitAirplane },
 		{ "GoForward", &AAirplane::execGoForward },
 		{ "StopForward", &AAirplane::execStopForward },
 		{ "TurnEnd", &AAirplane::execTurnEnd },
 		{ "TurnStart", &AAirplane::execTurnStart },
-		{ "UpDown", &AAirplane::execUpDown },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -271,6 +272,9 @@ struct Z_Construct_UClass_AAirplane_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
 		{ "HideCategories", "Navigation" },
 		{ "IncludePath", "Airplane.h" },
+		{ "ModuleRelativePath", "Public/Airplane.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PilotCharacter_MetaData[] = {
 		{ "ModuleRelativePath", "Public/Airplane.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SpringArm_MetaData[] = {
@@ -346,6 +350,7 @@ struct Z_Construct_UClass_AAirplane_Statics
 		{ "ModuleRelativePath", "Public/Airplane.h" },
 	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_PilotCharacter;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_SpringArm;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CameraComp;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_StaticMeshComp;
@@ -366,11 +371,11 @@ struct Z_Construct_UClass_AAirplane_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_AAirplane_ExitAirplane, "ExitAirplane" }, // 681949588
 		{ &Z_Construct_UFunction_AAirplane_GoForward, "GoForward" }, // 2020020961
 		{ &Z_Construct_UFunction_AAirplane_StopForward, "StopForward" }, // 1123039485
 		{ &Z_Construct_UFunction_AAirplane_TurnEnd, "TurnEnd" }, // 1155874540
 		{ &Z_Construct_UFunction_AAirplane_TurnStart, "TurnStart" }, // 4183767060
-		{ &Z_Construct_UFunction_AAirplane_UpDown, "UpDown" }, // 1446894399
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -378,6 +383,7 @@ struct Z_Construct_UClass_AAirplane_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAirplane_Statics::NewProp_PilotCharacter = { "PilotCharacter", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAirplane, PilotCharacter), Z_Construct_UClass_ASpartaCharacter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PilotCharacter_MetaData), NewProp_PilotCharacter_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAirplane_Statics::NewProp_SpringArm = { "SpringArm", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAirplane, SpringArm), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SpringArm_MetaData), NewProp_SpringArm_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAirplane_Statics::NewProp_CameraComp = { "CameraComp", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAirplane, CameraComp), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CameraComp_MetaData), NewProp_CameraComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAirplane_Statics::NewProp_StaticMeshComp = { "StaticMeshComp", nullptr, (EPropertyFlags)0x002008000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAirplane, StaticMeshComp), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StaticMeshComp_MetaData), NewProp_StaticMeshComp_MetaData) };
@@ -396,6 +402,7 @@ const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAirplane_Stati
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAirplane_Statics::NewProp_DragCoefficient = { "DragCoefficient", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAirplane, DragCoefficient), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DragCoefficient_MetaData), NewProp_DragCoefficient_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAirplane_Statics::NewProp_StallSpeed = { "StallSpeed", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAirplane, StallSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StallSpeed_MetaData), NewProp_StallSpeed_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAirplane_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAirplane_Statics::NewProp_PilotCharacter,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAirplane_Statics::NewProp_SpringArm,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAirplane_Statics::NewProp_CameraComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAirplane_Statics::NewProp_StaticMeshComp,
@@ -455,10 +462,10 @@ AAirplane::~AAirplane() {}
 struct Z_CompiledInDeferFile_FID_assignment6_Source_assignment6_Public_Airplane_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AAirplane, AAirplane::StaticClass, TEXT("AAirplane"), &Z_Registration_Info_UClass_AAirplane, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAirplane), 3670932810U) },
+		{ Z_Construct_UClass_AAirplane, AAirplane::StaticClass, TEXT("AAirplane"), &Z_Registration_Info_UClass_AAirplane, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAirplane), 2953523484U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_assignment6_Source_assignment6_Public_Airplane_h_391433227(TEXT("/Script/assignment6"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_assignment6_Source_assignment6_Public_Airplane_h_3017786423(TEXT("/Script/assignment6"),
 	Z_CompiledInDeferFile_FID_assignment6_Source_assignment6_Public_Airplane_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_assignment6_Source_assignment6_Public_Airplane_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

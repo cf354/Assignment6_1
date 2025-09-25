@@ -14,7 +14,6 @@ ASpartaPlayerController::ASpartaPlayerController() :
 	SprintAction(nullptr),
 	AirplaneInputMappingContext(nullptr),
 	GoForward(nullptr),
-	UpDown(nullptr),
 	Turn(nullptr),
 	InteractAction(nullptr)
 {

@@ -9,6 +9,7 @@
 #include "SpartaPlayerController.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/BoxComponent.h"
+#include "SpartaCharacter.h"
 
 
 // Sets default values
@@ -74,7 +75,7 @@ void AAirplane::Tick(float DeltaTime)
 	FVector Start = GetActorLocation();
 	FVector End = Start - FVector(0, 0, 1000.f);
 
-	bool bIsFlying = !(GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility));
+	bIsFlying = !(GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility));
 
 	
 	float StallFactor = 0;
@@ -140,15 +141,6 @@ void AAirplane::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 				);
 			}
 			
-			if (PlayerController->UpDown)
-			{
-				EnhancedInput->BindAction(
-					PlayerController->UpDown,
-					ETriggerEvent::Triggered,
-					this,
-					&AAirplane::UpDown
-				);
-			}
 			if (PlayerController->Turn)
 			{
 				EnhancedInput->BindAction(
@@ -165,6 +157,15 @@ void AAirplane::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 					ETriggerEvent::Completed,
 					this,
 					&AAirplane::TurnEnd
+				);
+			}
+			if (PlayerController->InteractAction)
+			{
+				EnhancedInput->BindAction(
+					PlayerController->InteractAction,
+					ETriggerEvent::Started,
+					this,
+					&AAirplane::ExitAirplane
 				);
 			}
 		}
@@ -188,13 +189,35 @@ void AAirplane::StopForward(const FInputActionValue& value)
 	ForwardInput = 0.f;
 }
 
-void AAirplane::UpDown(const FInputActionValue& value)
+void AAirplane::ExitAirplane(const FInputActionValue& value)
 {
-	if (!Controller)return;
+	if (!Controller) return;
+	if (!bIsFlying) {
+		ASpartaPlayerController* PC = Cast<ASpartaPlayerController>(GetController());
+		if (PC && PilotCharacter)
+		{
 
-	UpDownInput = value.Get<float>();
+			PC->CurrentIMC = PC->CharacterInputMappingContext;
+			PC->ApplyInputMapping();
 
+			FVector SpawnLocation = GetActorLocation() + GetActorRightVector() * 200.f;
+			PilotCharacter->SetActorLocation(SpawnLocation);
+
+			if (PilotCharacter->GetMesh())
+			{
+				PilotCharacter->GetMesh()->SetVisibility(true);
+				PilotCharacter->GetMesh()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+			}
+			PilotCharacter->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+
+			PC->Possess(PilotCharacter);
+
+			PilotCharacter = nullptr;
+		}
+	}
 }
+
+
 
 void AAirplane::TurnStart(const FInputActionValue& value)
 {

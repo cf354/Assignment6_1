@@ -95,7 +95,7 @@ void ASpartaCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 			{
 				EnhancedInput->BindAction(
 					PlayerController->InteractAction,
-					ETriggerEvent::Triggered,
+					ETriggerEvent::Started,
 					this,
 					&ASpartaCharacter::Interact
 				);
@@ -179,8 +179,17 @@ void ASpartaCharacter::Interact(const FInputActionValue& value)
 			UE_LOG(LogTemp, Warning, (TEXT("Interact On Overlap On")));
 			PC->CurrentIMC = PC->AirplaneInputMappingContext;
 			PC->ApplyInputMapping();
-			PC->Possess(NearbyAirplane);
 			
+			PC->Possess(NearbyAirplane);
+			NearbyAirplane->PilotCharacter = this;
+			if (GetMesh())
+			{
+				GetMesh()->SetVisibility(false);
+				GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+				GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			}
+
+		
 		}
 
 	}
