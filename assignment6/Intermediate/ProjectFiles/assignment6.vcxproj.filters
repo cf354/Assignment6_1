@@ -11,6 +11,7 @@
     <None Include="..\..\Source\assignment6Editor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.vsconfig" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -38,27 +39,53 @@
     <ClCompile Include="..\..\Source\assignment6\assignment6.h">
       <Filter>Source\assignment6</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Source\assignment6\Public\Elevator.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\assignment6\Public\Item.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\assignment6\Public\SpawnManager.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
+    <Filter Include="Source\assignment6\Private">
+      <UniqueIdentifier>{54EF48E7-BDDE-354A-9631-03D54CAA53EC}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\assignment6\Private\Airplane.cpp">
+      <Filter>Source\assignment6\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\assignment6\Private\Elevator.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\assignment6\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\assignment6\Private\Item.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\assignment6\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\assignment6\Private\SpartaCharacter.cpp">
+      <Filter>Source\assignment6\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\assignment6\Private\SpartaGameMode.cpp">
+      <Filter>Source\assignment6\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\assignment6\Private\SpartaPlayerController.cpp">
+      <Filter>Source\assignment6\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\assignment6\Private\SpawnManager.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\assignment6\Private</Filter>
+    </ClCompile>
+    <Filter Include="Source\assignment6\Public">
+      <UniqueIdentifier>{6627C6BF-51EB-349E-B476-C3B8F7F68A0E}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\assignment6\Public\Airplane.h">
+      <Filter>Source\assignment6\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\assignment6\Public\Elevator.h">
+      <Filter>Source\assignment6\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\assignment6\Public\Item.h">
+      <Filter>Source\assignment6\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\assignment6\Public\SpartaCharacter.h">
+      <Filter>Source\assignment6\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\assignment6\Public\SpartaGameMode.h">
+      <Filter>Source\assignment6\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\assignment6\Public\SpartaPlayerController.h">
+      <Filter>Source\assignment6\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\assignment6\Public\SpawnManager.h">
+      <Filter>Source\assignment6\Public</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

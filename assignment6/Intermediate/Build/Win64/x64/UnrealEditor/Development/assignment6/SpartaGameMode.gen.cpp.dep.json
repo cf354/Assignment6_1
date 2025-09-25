@@ -1,0 +1,21 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\ue5\\assignment6\\assignment6\\intermediate\\build\\win64\\unrealeditor\\inc\\assignment6\\uht\\spartagamemode.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\ue5\\assignment6\\assignment6\\intermediate\\build\\win64\\x64\\assignment6editor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\ue5\\assignment6\\assignment6\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\assignment6\\definitions.assignment6.h",
+            "d:\\ue5\\assignment6\\assignment6\\source\\assignment6\\public\\spartagamemode.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemode.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemodebase.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\engine\\serverstatreplicator.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\serverstatreplicator.generated.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gamemodebase.generated.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gamemode.generated.h",
+            "d:\\ue5\\assignment6\\assignment6\\intermediate\\build\\win64\\unrealeditor\\inc\\assignment6\\uht\\spartagamemode.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
