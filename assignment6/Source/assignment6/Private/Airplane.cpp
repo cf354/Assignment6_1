@@ -10,21 +10,21 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/BoxComponent.h"
 #include "SpartaCharacter.h"
-
+#include "Components/SkeletalMeshComponent.h"
 
 // Sets default values
 AAirplane::AAirplane()
 {
 
-	StaticMeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
-	SetRootComponent(StaticMeshComp);
+	SkeletalMeshComp = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMesh"));
+	SetRootComponent(SkeletalMeshComp);
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm"));
-	SpringArm->SetupAttachment(StaticMeshComp);
+	SpringArm->SetupAttachment(SkeletalMeshComp);
 	SpringArm->TargetArmLength = 300.0f;
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraComp->SetupAttachment(SpringArm);
 	TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("Trigger Box"));
-	TriggerBox->SetupAttachment(StaticMeshComp);
+	TriggerBox->SetupAttachment(SkeletalMeshComp);
 	TriggerBox->SetBoxExtent(FVector(200.f, 200.f, 100.f));
 
 	MaxSpeed = 3000.f;
@@ -40,15 +40,15 @@ AAirplane::AAirplane()
 	MaxPitchAngle = 90.f;
 	PitchInterpSpeed = 0.01f;
 
-	CurrentLiftFactor = 0.5f;
-	MaxLiftFactor = 0.8f;
-	MinLiftFactor = 0.5f;
+	CurrentLiftFactor = 0.4f;
+	MaxLiftFactor = 0.43f;
+	MinLiftFactor = 0.4f;
 	DragCoefficient = 0.02f;
 	StallSpeed = 1000.f;
 
 	PitchVelocity = 0.f;
 	PitchAccel = 30.f;
-	GravityVelocity = { 0,0,0 };
+
 
 	PrimaryActorTick.bCanEverTick = true;
 }
@@ -80,8 +80,7 @@ void AAirplane::Tick(float DeltaTime)
 	
 	FHitResult Hit;
 	FVector Start = GetActorLocation();
-	FVector End = Start-(0.f,0.f,50.f);
-
+	FVector End = Start - (0.f, 0.f, 50.f);
 	FCollisionQueryParams Params;
 	Params.AddIgnoredActor(this);
 
@@ -108,18 +107,9 @@ void AAirplane::Tick(float DeltaTime)
 	float LiftForce = ForwardSpeed * CurrentLiftFactor;
 	FVector Lift = GetActorUpVector() * LiftForce;
 	CurrentSpeed += Gravity * DeltaTime + Lift * DeltaTime;
-	UE_LOG(LogTemp, Warning, TEXT("Current Speed: %f Lift : %f Location : %s Gravity : %f" ), CurrentSpeed.Z*DeltaTime, Lift.Z*DeltaTime, *GetActorLocation().ToString(), -980.f * DeltaTime);
+	UE_LOG(LogTemp, Warning, TEXT("Current Speed: %f Lift : %f Location : %s Gravity : %f" ), CurrentSpeed.Z*DeltaTime, Lift.Z*DeltaTime, *GetActorLocation().ToString(), Gravity.Z*DeltaTime);
 	
-	
-	
-
-
 	AddActorWorldOffset(CurrentSpeed * DeltaTime, true);
-	
-
-
-	
-
 
 	if (!FMath::IsNearlyZero(TurnInput))
 	{

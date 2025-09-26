@@ -5,7 +5,7 @@
 #include "GameFramework/Pawn.h"
 #include "Airplane.generated.h"
 
-
+class USkeletalMeshComponent;
 class USpringArmComponent;
 class UCameraComponent;
 class USceneComponent;
@@ -31,13 +31,12 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	USpringArmComponent* SpringArm;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UCameraComponent* CameraComp;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Airplane|Component")
-	UStaticMeshComponent* StaticMeshComp;
+	USkeletalMeshComponent* SkeletalMeshComp;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "Airplane|Component")
 	UBoxComponent* TriggerBox;
 

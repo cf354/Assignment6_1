@@ -17,8 +17,8 @@ ASSIGNMENT6_API UClass* Z_Construct_UClass_ASpartaCharacter_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_APawn();
 ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
-ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 ENHANCEDINPUT_API UScriptStruct* Z_Construct_UScriptStruct_FInputActionValue();
 UPackage* Z_Construct_UPackage__Script_assignment6();
 // End Cross Module References
@@ -379,7 +379,7 @@ struct Z_Construct_UClass_AAirplane_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Airplane.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StaticMeshComp_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SkeletalMeshComp_MetaData[] = {
 		{ "Category", "Airplane|Component" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Airplane.h" },
@@ -453,7 +453,7 @@ struct Z_Construct_UClass_AAirplane_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PilotCharacter;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_SpringArm;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CameraComp;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_StaticMeshComp;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_SkeletalMeshComp;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_TriggerBox;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxSpeed;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_Acceleration;
@@ -490,7 +490,7 @@ struct Z_Construct_UClass_AAirplane_Statics
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAirplane_Statics::NewProp_PilotCharacter = { "PilotCharacter", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAirplane, PilotCharacter), Z_Construct_UClass_ASpartaCharacter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PilotCharacter_MetaData), NewProp_PilotCharacter_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAirplane_Statics::NewProp_SpringArm = { "SpringArm", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAirplane, SpringArm), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SpringArm_MetaData), NewProp_SpringArm_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAirplane_Statics::NewProp_CameraComp = { "CameraComp", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAirplane, CameraComp), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CameraComp_MetaData), NewProp_CameraComp_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAirplane_Statics::NewProp_StaticMeshComp = { "StaticMeshComp", nullptr, (EPropertyFlags)0x002008000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAirplane, StaticMeshComp), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StaticMeshComp_MetaData), NewProp_StaticMeshComp_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAirplane_Statics::NewProp_SkeletalMeshComp = { "SkeletalMeshComp", nullptr, (EPropertyFlags)0x002008000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAirplane, SkeletalMeshComp), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SkeletalMeshComp_MetaData), NewProp_SkeletalMeshComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAirplane_Statics::NewProp_TriggerBox = { "TriggerBox", nullptr, (EPropertyFlags)0x002008000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAirplane, TriggerBox), Z_Construct_UClass_UBoxComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TriggerBox_MetaData), NewProp_TriggerBox_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAirplane_Statics::NewProp_MaxSpeed = { "MaxSpeed", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAirplane, MaxSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxSpeed_MetaData), NewProp_MaxSpeed_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAirplane_Statics::NewProp_Acceleration = { "Acceleration", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAirplane, Acceleration), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Acceleration_MetaData), NewProp_Acceleration_MetaData) };
@@ -511,7 +511,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAirplane
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAirplane_Statics::NewProp_PilotCharacter,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAirplane_Statics::NewProp_SpringArm,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAirplane_Statics::NewProp_CameraComp,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAirplane_Statics::NewProp_StaticMeshComp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAirplane_Statics::NewProp_SkeletalMeshComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAirplane_Statics::NewProp_TriggerBox,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAirplane_Statics::NewProp_MaxSpeed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAirplane_Statics::NewProp_Acceleration,
@@ -570,10 +570,10 @@ AAirplane::~AAirplane() {}
 struct Z_CompiledInDeferFile_FID_assignment6_Source_assignment6_Public_Airplane_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AAirplane, AAirplane::StaticClass, TEXT("AAirplane"), &Z_Registration_Info_UClass_AAirplane, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAirplane), 3096397598U) },
+		{ Z_Construct_UClass_AAirplane, AAirplane::StaticClass, TEXT("AAirplane"), &Z_Registration_Info_UClass_AAirplane, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAirplane), 3017061771U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_assignment6_Source_assignment6_Public_Airplane_h_957874662(TEXT("/Script/assignment6"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_assignment6_Source_assignment6_Public_Airplane_h_2024207367(TEXT("/Script/assignment6"),
 	Z_CompiledInDeferFile_FID_assignment6_Source_assignment6_Public_Airplane_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_assignment6_Source_assignment6_Public_Airplane_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
