@@ -41,8 +41,8 @@ AAirplane::AAirplane()
 	PitchInterpSpeed = 0.01f;
 
 	CurrentLiftFactor = 0.5f;
-	MaxLiftFactor = 0.5f;
-	MinLiftFactor = 1.f;
+	MaxLiftFactor = 0.8f;
+	MinLiftFactor = 0.5f;
 	DragCoefficient = 0.02f;
 	StallSpeed = 1000.f;
 
@@ -103,8 +103,8 @@ void AAirplane::Tick(float DeltaTime)
 	{
 		Gravity = { 0,0,-980.f };
 	}
-
-	float ForwardSpeed = FVector::DotProduct(CurrentSpeed, GetActorForwardVector());
+	FVector HorizontalSpeed = FVector(CurrentSpeed.X, CurrentSpeed.Y, 0.f);
+	float ForwardSpeed = HorizontalSpeed.Size();
 	float LiftForce = ForwardSpeed * CurrentLiftFactor;
 	FVector Lift = GetActorUpVector() * LiftForce;
 	CurrentSpeed += Gravity * DeltaTime + Lift * DeltaTime;
@@ -151,12 +151,14 @@ void AAirplane::Tick(float DeltaTime)
 	SetActorRotation(NewRotation);
 
 	FVector LocalUp = GetActorUpVector();
-	float PitchFactor = FMath::Abs(FVector::DotProduct(LocalUp, FVector::UpVector));
 
-	CurrentLiftFactor = MaxLiftFactor * PitchFactor;
+	FVector Forward = GetActorForwardVector();
+	
+	FVector TargetForward = Forward * HorizontalSpeed.Size();
+	FVector NewHorizontal = FMath::VInterpTo(HorizontalSpeed, TargetForward, DeltaTime, 2.f);
 
-	/*FVector Forward = GetActorForwardVector();
-	CurrentSpeed = FMath::VInterpTo(CurrentSpeed, Forward * CurrentSpeed.Size(), DeltaTime, 2.f);	*/
+	CurrentSpeed = FVector(NewHorizontal.X, NewHorizontal.Y, CurrentSpeed.Z);
+
 }
 
 void AAirplane::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
