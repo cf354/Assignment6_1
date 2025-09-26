@@ -108,8 +108,6 @@ void ASpartaCharacter::Move(const FInputActionValue& value)
 {
 	if (!Controller) return;
 
-
-
 	const FVector2D MoveInput = value.Get<FVector2D>();
 	FRotator YawRotation(0, Controller->GetControlRotation().Yaw, 0);
 
@@ -126,7 +124,6 @@ void ASpartaCharacter::Move(const FInputActionValue& value)
 		AddMovementInput(RightDir, MoveInput.Y);
 	}
 }
-
 
 void ASpartaCharacter::StartJump(const FInputActionValue& value)
 {

@@ -53,11 +53,15 @@ protected:
 	void TurnEnd(const FInputActionValue& value);
 	UFUNCTION()
 	void ExitAirplane(const FInputActionValue& value);
+	UFUNCTION()
+	void UpDownStart(const FInputActionValue& value);
+	UFUNCTION()
+	void UpDownEnd(const FInputActionValue& value);
+
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Airplane|Properties")
 	float MaxSpeed;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Airplane|Properties")
-	float CurrentSpeed;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Airplane|Properties")
 	float Acceleration;
 
@@ -83,17 +87,26 @@ protected:
 	float RollInterpSpeed;
 	
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category = "Airplane|Properties")
-	float LiftFactor;
+	float CurrentLiftFactor;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Airplane|Properties")
+	float MaxLiftFactor;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Airplane|Properties")
+	float MinLiftFactor;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category = "Airplane|Properties")
 	float DragCoefficient;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category = "Airplane|ProPerties")
 	float StallSpeed;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Airplane|ProPerties")
+	float PitchAccel;
 
+	FVector CurrentSpeed;
+	FVector GravityVelocity;
 	float CurrentPitch;
 	float CurrentRoll;
 	float TargetYaw;
 	float CurrentYaw;
 	float YawInterpSpeed;
+	float PitchVelocity;
 
 	bool bIsFlying;
 

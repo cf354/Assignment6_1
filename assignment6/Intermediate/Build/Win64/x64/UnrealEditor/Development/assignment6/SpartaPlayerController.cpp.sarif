@@ -3,7 +3,30 @@
     "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
     "runs": [
         {
-            "results": [],
+            "results": [
+                {
+                    "ruleId": "C5038",
+                    "message": {
+                        "text": "데이터 멤버 'ASpartaPlayerController::UpDown'은(는) 데이터 멤버 'ASpartaPlayerController::Turn' 이후에 초기화됩니다."
+                    },
+                    "analysisTarget": {
+                        "uri": "file:///D:/Ue5/assignment6/assignment6/Source/assignment6/Private/SpartaPlayerController.cpp"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:///D:/Ue5/assignment6/assignment6/Source/assignment6/Private/SpartaPlayerController.cpp"
+                                },
+                                "region": {
+                                    "startLine": 17,
+                                    "startColumn": 2
+                                }
+                            }
+                        }
+                    ]
+                }
+            ],
             "tool": {
                 "driver": {
                     "name": "MSVC",

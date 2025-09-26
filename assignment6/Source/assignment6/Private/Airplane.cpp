@@ -15,7 +15,7 @@
 // Sets default values
 AAirplane::AAirplane()
 {
-	
+
 	StaticMeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
 	SetRootComponent(StaticMeshComp);
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm"));
@@ -27,9 +27,8 @@ AAirplane::AAirplane()
 	TriggerBox->SetupAttachment(StaticMeshComp);
 	TriggerBox->SetBoxExtent(FVector(200.f, 200.f, 100.f));
 
-	CurrentSpeed = 0.f;
-	MaxSpeed = 2000.f;
-	Acceleration = 300.f;
+	MaxSpeed = 3000.f;
+	Acceleration = 400.f;
 
 	CurrentVerticalSpeed = 0.f;
 	VerticalSpeed = 500.f;
@@ -39,81 +38,125 @@ AAirplane::AAirplane()
 	RollInterpSpeed = 0.5f;
 
 	MaxPitchAngle = 90.f;
-	PitchInterpSpeed = 0.1f;
+	PitchInterpSpeed = 0.01f;
 
-	LiftFactor = 0.5f;
+	CurrentLiftFactor = 0.5f;
+	MaxLiftFactor = 0.5f;
+	MinLiftFactor = 1.f;
 	DragCoefficient = 0.02f;
 	StallSpeed = 1000.f;
 
-	PrimaryActorTick.bCanEverTick = true;
+	PitchVelocity = 0.f;
+	PitchAccel = 30.f;
+	GravityVelocity = { 0,0,0 };
 
+	PrimaryActorTick.bCanEverTick = true;
 }
 
 void AAirplane::BeginPlay()
 {
 	Super::BeginPlay();
-
+	CurrentSpeed = GetVelocity();
 }
 
 void AAirplane::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-
-	CurrentSpeed += ForwardInput * Acceleration * DeltaTime;
-	CurrentSpeed -= DragCoefficient * CurrentSpeed * DeltaTime;
-	CurrentSpeed = FMath::Clamp(CurrentSpeed, 0.f, MaxSpeed);
-	AddActorWorldOffset(GetActorForwardVector() * CurrentSpeed * DeltaTime, true);
-
-	float Lift = CurrentSpeed * LiftFactor;
-	FVector BaseGravity = FVector(0, 0, -980.f) * DeltaTime;
-	float GravityFactor = FMath::Clamp(-CurrentPitch / MaxPitchAngle, 0.f, 1.f);
-	FVector GravityForce = BaseGravity * (1.f + GravityFactor);
-	AddActorWorldOffset(GetActorUpVector() * Lift * DeltaTime+GravityForce, true);
-
-	FHitResult Hit;
-	FVector Start = GetActorLocation();
-	FVector End = Start - FVector(0, 0, 1000.f);
-
-	bIsFlying = !(GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility));
-
-	
-	float StallFactor = 0;
-
-	if (bIsFlying&&CurrentSpeed < StallSpeed)
+	if (!FMath::IsNearlyZero(ForwardInput))
 	{
-		StallFactor = FMath::Clamp(1 - (CurrentSpeed / StallSpeed), 0.f, 1);
+		FVector Acceleration3D = GetActorForwardVector() * Acceleration * ForwardInput * DeltaTime;
+		CurrentSpeed += Acceleration3D;
 	}
 	else {
-		StallFactor = 0;
+		CurrentSpeed -= CurrentSpeed * DragCoefficient * DeltaTime;
 	}
+	FVector CurrentDirectVelocity = { CurrentSpeed.X,CurrentSpeed.Y,0.f };
+	float Speed = CurrentDirectVelocity.Size();
+	if (Speed > MaxSpeed)
+	{	
+		CurrentSpeed = CurrentSpeed.GetSafeNormal() * MaxSpeed;
+	}
+	
+	FHitResult Hit;
+	FVector Start = GetActorLocation();
+	FVector End = Start-(0.f,0.f,50.f);
+
+	FCollisionQueryParams Params;
+	Params.AddIgnoredActor(this);
+
+	bIsFlying = !GetWorld()->LineTraceSingleByChannel(
+		Hit,
+		Start,
+		End,
+		ECC_Visibility,
+		Params
+	);
+
+	FVector Gravity;
+	if (!bIsFlying)
+	{
+		CurrentSpeed.Z = 0;
+		Gravity = { 0,0,0 };
+	}
+	else 
+	{
+		Gravity = { 0,0,-980.f };
+	}
+
+	float ForwardSpeed = FVector::DotProduct(CurrentSpeed, GetActorForwardVector());
+	float LiftForce = ForwardSpeed * CurrentLiftFactor;
+	FVector Lift = GetActorUpVector() * LiftForce;
+	CurrentSpeed += Gravity * DeltaTime + Lift * DeltaTime;
+	UE_LOG(LogTemp, Warning, TEXT("Current Speed: %f Lift : %f Location : %s Gravity : %f" ), CurrentSpeed.Z*DeltaTime, Lift.Z*DeltaTime, *GetActorLocation().ToString(), -980.f * DeltaTime);
+	
+	
+	
+
+
+	AddActorWorldOffset(CurrentSpeed * DeltaTime, true);
+	
+
+
+	
+
 
 	if (!FMath::IsNearlyZero(TurnInput))
 	{
 		FRotator DeltaRot(0.f, TurnInput * TurnSpeed * DeltaTime, 0.f);
-		AddActorLocalRotation(DeltaRot,true);
+		AddActorLocalRotation(DeltaRot, true);
 
 		float TargetRoll = TurnInput * MaxRollAngle;
-		CurrentRoll = FMath::FInterpTo(CurrentRoll, TargetRoll, DeltaTime, RollInterpSpeed);		
-	}
-	else 
-	{
-		CurrentRoll = FMath::FInterpTo(CurrentRoll, 0.f, DeltaTime, RollInterpSpeed);
-	}
-	
-	if (!FMath::IsNearlyZero(ForwardInput)) {		
-		float TargetPitch = (ForwardInput * MaxPitchAngle)-(MaxPitchAngle*StallFactor)+0.1*-MaxPitchAngle;
-		CurrentPitch = FMath::FInterpTo(CurrentPitch, TargetPitch, DeltaTime, PitchInterpSpeed);		
+		CurrentRoll = FMath::FInterpTo(CurrentRoll, TargetRoll, DeltaTime, RollInterpSpeed);
 	}
 	else
 	{
-		float GravityPitch = 0.1f;
-		float TargetPitch = (ForwardInput * MaxPitchAngle) - (MaxPitchAngle*StallFactor) + GravityPitch * -MaxPitchAngle;
-		CurrentPitch = FMath::FInterpTo(CurrentPitch, TargetPitch, DeltaTime, PitchInterpSpeed);
+		CurrentRoll = FMath::FInterpTo(CurrentRoll, 0.f, DeltaTime, RollInterpSpeed);
 	}
-	FRotator NewRotation(CurrentPitch, GetActorRotation().Yaw, CurrentRoll);
 
+	if (!FMath::IsNearlyZero(UpDownInput))
+	{
+		PitchVelocity += UpDownInput * PitchAccel * DeltaTime;
+	}
+	else
+	{
+		PitchVelocity = FMath::FInterpTo(PitchVelocity, 0.f, DeltaTime, 2.f);
+	}
+
+	CurrentPitch += PitchVelocity * DeltaTime;
+
+	FRotator NewRotation = GetActorRotation();
+	NewRotation.Pitch += PitchVelocity * DeltaTime;
+	NewRotation.Roll = CurrentRoll;
 	SetActorRotation(NewRotation);
+
+	FVector LocalUp = GetActorUpVector();
+	float PitchFactor = FMath::Abs(FVector::DotProduct(LocalUp, FVector::UpVector));
+
+	CurrentLiftFactor = MaxLiftFactor * PitchFactor;
+
+	/*FVector Forward = GetActorForwardVector();
+	CurrentSpeed = FMath::VInterpTo(CurrentSpeed, Forward * CurrentSpeed.Size(), DeltaTime, 2.f);	*/
 }
 
 void AAirplane::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -140,7 +183,7 @@ void AAirplane::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 					&AAirplane::StopForward
 				);
 			}
-			
+
 			if (PlayerController->Turn)
 			{
 				EnhancedInput->BindAction(
@@ -168,24 +211,37 @@ void AAirplane::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 					&AAirplane::ExitAirplane
 				);
 			}
+			if (PlayerController->UpDown)
+			{
+				EnhancedInput->BindAction(
+					PlayerController->UpDown,
+					ETriggerEvent::Triggered,
+					this,
+					&AAirplane::UpDownStart
+				);
+			}
+			if (PlayerController->UpDown)
+			{
+				EnhancedInput->BindAction(
+					PlayerController->UpDown,
+					ETriggerEvent::Completed,
+					this,
+					&AAirplane::UpDownEnd
+				);
+			}
 		}
 	}
-
 }
-
 
 void AAirplane::GoForward(const FInputActionValue& value)
 {
-	if (!Controller)return;
-
+	if (!Controller) return;
 	ForwardInput = value.Get<float>();
-
-
 }
 
 void AAirplane::StopForward(const FInputActionValue& value)
 {
-	if (!Controller)return;
+	if (!Controller) return;
 	ForwardInput = 0.f;
 }
 
@@ -217,7 +273,17 @@ void AAirplane::ExitAirplane(const FInputActionValue& value)
 	}
 }
 
+void AAirplane::UpDownStart(const FInputActionValue& value)
+{
+	if (!Controller) return;
+	UpDownInput = value.Get<float>();
+}
 
+void AAirplane::UpDownEnd(const FInputActionValue& value)
+{
+	if (!Controller) return;
+	UpDownInput = 0.f;
+}
 
 void AAirplane::TurnStart(const FInputActionValue& value)
 {

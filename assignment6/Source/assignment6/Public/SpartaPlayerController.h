@@ -35,6 +35,8 @@ public:
 	UInputAction* Turn;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
 	UInputAction* InteractAction;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+	UInputAction* UpDown;
 	
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category ="Input")

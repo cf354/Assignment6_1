@@ -16,6 +16,8 @@ struct FInputActionValue;
 #define ASSIGNMENT6_Airplane_generated_h
 
 #define FID_assignment6_Source_assignment6_Public_Airplane_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execUpDownEnd); \
+	DECLARE_FUNCTION(execUpDownStart); \
 	DECLARE_FUNCTION(execExitAirplane); \
 	DECLARE_FUNCTION(execTurnEnd); \
 	DECLARE_FUNCTION(execTurnStart); \
